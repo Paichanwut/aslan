@@ -33,15 +33,15 @@ const PAIN_POINTS = [
 
 export function PainPointsSection() {
   return (
-    <section className="py-24 px-4 bg-slate-50/50">
+    <section className="py-12 px-4 bg-slate-50/50">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold text-slate-900 mb-6 max-w-3xl mx-auto leading-tight">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-extrabold text-slate-900 mb-4 max-w-3xl mx-auto leading-tight">
             The Market Never Sleeps.
             <br />
             Neither Should Your Intelligence.
           </h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+          <p className="text-base text-slate-500 max-w-2xl mx-auto">
             Every day, millions of investors face the same struggles.
             <br className="hidden md:block" />
             Deep research for investing has become essential for success in
@@ -49,24 +49,24 @@ export function PainPointsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {PAIN_POINTS.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group"
+              className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group"
             >
               <div
-                className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${item.bg}`}
+                className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 ${item.bg}`}
               >
                 <item.icon
-                  className={`w-6 h-6 ${item.color}`}
+                  className={`w-5 h-5 ${item.color}`}
                   strokeWidth={2.5}
                 />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-3">
+              <h3 className="text-base font-bold text-slate-900 mb-2">
                 {item.title}
               </h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
+              <p className="text-slate-500 text-xs leading-relaxed">
                 {item.desc
                   .split(
                     /(You're not alone\.|It already happened\.|What do you have\?)/g,
@@ -88,10 +88,10 @@ export function PainPointsSection() {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <button className="bg-white border border-gray-200 text-slate-900 font-bold py-4 px-8 rounded-full shadow-sm hover:shadow-md transition-all inline-flex items-center gap-2">
+        <div className="mt-10 text-center">
+          <button className="bg-white border border-gray-200 text-slate-900 font-bold py-3 px-6 rounded-full shadow-sm hover:shadow-md transition-all inline-flex items-center gap-2 text-sm">
             Meet Your AI Agent Team
-            <span className="text-xl">→</span>
+            <span className="text-lg">→</span>
           </button>
         </div>
       </div>

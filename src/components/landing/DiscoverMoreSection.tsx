@@ -70,32 +70,33 @@ const DISCOVER_ITEMS = [
 
 export function DiscoverMoreSection() {
   return (
-    <section className="py-20 px-4 bg-white">
+    <section className="py-10 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="bg-orange-500 rounded-lg p-1.5 text-white">
+        <div className="flex items-center gap-2 mb-6">
+          <div className="bg-orange-500 rounded-md p-1 px-2 text-white text-xs">
             <span className="font-bold">Original</span>
-            {/* Using text placeholder or simple icon if lucide doesn't have the ribbon shape exactly */}
           </div>
-          <h2 className="text-2xl font-extrabold text-slate-900">
+          <h2 className="text-xl font-extrabold text-slate-900">
             Discover More
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {DISCOVER_ITEMS.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-blue-100 transition-all duration-300 group cursor-pointer flex items-start gap-4"
+              className="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-lg hover:border-blue-100 transition-all duration-300 group cursor-pointer flex items-start gap-3"
             >
               <div
-                className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${item.bg}`}
+                className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${item.bg}`}
               >
-                <item.icon className={`w-6 h-6 ${item.color}`} />
+                <item.icon className={`w-5 h-5 ${item.color}`} />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900 mb-1">{item.title}</h3>
-                <p className="text-slate-500 text-sm leading-snug">
+                <h3 className="font-bold text-slate-900 mb-0.5 text-sm">
+                  {item.title}
+                </h3>
+                <p className="text-slate-500 text-xs leading-snug">
                   {item.desc}
                 </p>
               </div>

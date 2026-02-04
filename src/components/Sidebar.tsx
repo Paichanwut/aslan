@@ -47,7 +47,7 @@ export function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
             <span className="text-white font-bold text-lg">A</span>
           </div>
         ) : (
-          <Link href="/" className="flex items-center gap-3.5">
+          <Link href="/" className="flex items-center gap-1">
             {/* Logo Icon */}
             <div className="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">A</span>
