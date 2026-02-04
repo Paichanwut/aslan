@@ -38,21 +38,23 @@ export function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
       {/* Header */}
       <div
         className={cn(
-          "flex items-center h-16",
+          "flex items-center h-[70px]",
           isCollapsed ? "justify-center px-2" : "justify-between px-6",
         )}
       >
         {isCollapsed ? (
-          <div className="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">A</span>
+          <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-sm">
+            <div className="w-4 h-4 bg-white rounded-sm" />
           </div>
         ) : (
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">A</span>
+          <Link href="/" className="flex items-center gap-3.5">
+            {/* Logo Icon */}
+            <div className="relative w-9 h-9 flex items-center justify-center">
+              <div className="absolute inset-0 bg-blue-600 rounded-lg transform rotate-45 shadow-sm"></div>
+              <div className="absolute w-3.5 h-3.5 bg-white rounded-[2px] z-10"></div>
             </div>
-            <span className="text-xl font-bold text-slate-800 tracking-tight">
-              SLAN
+            <span className="text-xl font-extrabold text-slate-900 tracking-tight">
+              METRONIC
             </span>
           </Link>
         )}
@@ -60,11 +62,11 @@ export function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
         {!isCollapsed && (
           <button
             onClick={toggleCollapse}
-            className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-400 hover:text-gray-600 transition-colors"
+            className="group w-8 h-8 flex items-center justify-center rounded-lg border-2 border-slate-100 hover:border-slate-200 hover:bg-slate-50 transition-all ml-4"
           >
-            <div className="flex">
-              <span className="border-l border-current h-3 mx-[1px]"></span>
-              <ChevronLeft className="w-4 h-4" />
+            <div className="flex items-center text-slate-400 group-hover:text-slate-600 transition-colors">
+              <span className="w-[1.5px] h-3.5 bg-current rounded-full mr-[1px]"></span>
+              <ChevronLeft className="w-4 h-4" strokeWidth={2.5} />
             </div>
           </button>
         )}
