@@ -64,10 +64,14 @@ export function PainPointsSection() {
         </div>
 
         <div className="mt-10 text-center">
-          <button className="bg-white border border-gray-200 text-slate-900 font-bold py-3 px-6 rounded-full shadow-sm hover:shadow-md transition-all inline-flex items-center gap-2 text-sm">
-            Meet Your AI Agent Team
-            <span className="text-lg">→</span>
-          </button>
+          <Link href="/intelligence">
+            <button className="bg-white border border-gray-200 text-slate-900 font-bold py-3 px-6 rounded-full shadow-sm hover:shadow-md transition-all inline-flex items-center gap-2 text-sm group">
+              Meet Your AI Agent Team
+              <span className="text-lg group-hover:translate-x-1 transition-transform">
+                →
+              </span>
+            </button>
+          </Link>
         </div>
       </div>
     </section>
