@@ -43,18 +43,17 @@ export function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
         )}
       >
         {isCollapsed ? (
-          <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-sm">
-            <div className="w-4 h-4 bg-white rounded-sm" />
+          <div className="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center">
+            <span className="text-white font-bold text-lg">A</span>
           </div>
         ) : (
           <Link href="/" className="flex items-center gap-3.5">
             {/* Logo Icon */}
-            <div className="relative w-9 h-9 flex items-center justify-center">
-              <div className="absolute inset-0 bg-blue-600 rounded-lg transform rotate-45 shadow-sm"></div>
-              <div className="absolute w-3.5 h-3.5 bg-white rounded-[2px] z-10"></div>
+            <div className="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">A</span>
             </div>
             <span className="text-xl font-extrabold text-slate-900 tracking-tight">
-              METRONIC
+              SLAN
             </span>
           </Link>
         )}
