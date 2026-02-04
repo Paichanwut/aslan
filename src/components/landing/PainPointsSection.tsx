@@ -1,15 +1,21 @@
 import { PAIN_POINTS } from "@/data/mockData";
+import Link from "next/link";
 
 export function PainPointsSection() {
   return (
     <section className="py-12 px-4 bg-slate-50/50">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-extrabold text-slate-900 mb-4 max-w-3xl mx-auto leading-tight">
-            The Market Never Sleeps.
-            <br />
-            Neither Should Your Intelligence.
-          </h2>
+          <Link
+            href="/intelligence"
+            className="block group cursor-pointer inline-block"
+          >
+            <h2 className="text-3xl font-extrabold text-slate-900 mb-4 max-w-3xl mx-auto leading-tight group-hover:text-blue-600 transition-colors">
+              The Market Never Sleeps.
+              <br />
+              Neither Should Your Intelligence.
+            </h2>
+          </Link>
           <p className="text-base text-slate-500 max-w-2xl mx-auto">
             Every day, millions of investors face the same struggles.
             <br className="hidden md:block" />
