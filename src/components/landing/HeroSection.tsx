@@ -56,39 +56,42 @@ export function HeroSection() {
       </div>
 
       {/* Popular Today */}
-      <div className="w-full">
+      <div className="w-full max-w-7xl relative">
         <div className="flex items-center justify-center gap-2 mb-6">
           <span className="text-xl">🔥</span>
           <h3 className="text-lg font-bold text-slate-900">Popular today</h3>
         </div>
 
-        {/* Scrollable container for expanded stock list */}
-        <div className="flex overflow-x-auto pb-4 gap-3 md:grid md:grid-cols-4 lg:grid-cols-6 lg:gap-3 xl:grid-cols-8 scrollbar-hide snap-x">
+        {/* Gradient Fades for Scroll Indication */}
+        <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none hidden md:block"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none hidden md:block"></div>
+
+        {/* Scrollable container */}
+        <div className="flex overflow-x-auto pb-6 gap-4 px-4 scrollbar-hide snap-x snap-mandatory -mx-4 md:mx-0 justify-start md:justify-center flex-nowrap">
           {HERO_STOCKS.map((stock) => (
             <div
               key={stock.symbol}
-              className="bg-white border border-gray-100 rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer text-left group min-w-[140px] snap-center"
+              className="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-lg hover:border-blue-100 transition-all duration-300 cursor-pointer text-left group min-w-[160px] snap-center flex-shrink-0"
             >
-              <div className="flex justify-between items-start mb-2">
-                <span className="text-[10px] font-bold text-gray-400 tracking-wider group-hover:text-blue-600 transition-colors truncate">
+              <div className="flex justify-between items-start mb-3">
+                <span className="text-[10px] font-bold text-gray-400 tracking-wider group-hover:text-blue-600 transition-colors uppercase truncate">
                   {stock.name}
                 </span>
+                {stock.isPositive ? (
+                  <div className="text-[10px] font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded-full flex items-center gap-1">
+                    ▲ {stock.change}
+                  </div>
+                ) : (
+                  <div className="text-[10px] font-bold text-red-500 bg-red-50 px-1.5 py-0.5 rounded-full flex items-center gap-1">
+                    ▼ {stock.change}
+                  </div>
+                )}
               </div>
-              <div className="flex justify-between items-end">
-                <div>
-                  <div className="font-bold text-slate-900 text-base">
-                    {stock.symbol}
-                  </div>
-                  <div
-                    className={cn(
-                      "text-[10px] font-semibold mt-0.5",
-                      stock.isPositive ? "text-green-600" : "text-red-500",
-                    )}
-                  >
-                    {stock.change}
-                  </div>
+              <div className="flex flex-col items-start gap-0.5">
+                <div className="font-bold text-slate-900 text-lg leading-none">
+                  {stock.symbol}
                 </div>
-                <div className="text-slate-700 font-bold text-sm">
+                <div className="text-slate-500 font-medium text-xs">
                   ${stock.price}
                 </div>
               </div>
