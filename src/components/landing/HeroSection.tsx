@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import { Search, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { HERO_STOCKS } from "@/data/mockData";
@@ -45,7 +46,7 @@ export function HeroSection() {
 
       {/* Search Bar */}
       <div className="w-full max-w-2xl relative mb-10 text-left">
-        <div className="absolute -top-3 left-6 z-10">
+        <div className="absolute -top-3 left-6 z-[51]">
           <span className="bg-white text-[10px] font-bold text-green-600 px-2 py-0.5 rounded-full border shadow-sm flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
             AI-Powered
@@ -82,36 +83,41 @@ export function HeroSection() {
                     {filteredStocks.map((stock) => (
                       <li
                         key={stock.symbol}
-                        className="px-4 py-3 hover:bg-blue-50 cursor-pointer flex justify-between items-center transition-colors border-b border-gray-50 last:border-0"
+                        className="border-b border-gray-50 last:border-0"
                       >
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center font-bold text-xs text-slate-600">
-                            {stock.symbol[0]}
+                        <Link
+                          href={`/stock/${stock.symbol}`}
+                          className="px-4 py-3 hover:bg-blue-50 cursor-pointer flex justify-between items-center transition-colors block w-full"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center font-bold text-xs text-slate-600">
+                              {stock.symbol[0]}
+                            </div>
+                            <div>
+                              <div className="font-bold text-slate-900 text-sm">
+                                {stock.symbol}
+                              </div>
+                              <div className="text-xs text-slate-500">
+                                {stock.name}
+                              </div>
+                            </div>
                           </div>
-                          <div>
+                          <div className="text-right">
                             <div className="font-bold text-slate-900 text-sm">
-                              {stock.symbol}
+                              ${stock.price}
                             </div>
-                            <div className="text-xs text-slate-500">
-                              {stock.name}
+                            <div
+                              className={cn(
+                                "text-[10px] font-bold",
+                                stock.isPositive
+                                  ? "text-green-600"
+                                  : "text-red-500",
+                              )}
+                            >
+                              {stock.change}
                             </div>
                           </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="font-bold text-slate-900 text-sm">
-                            ${stock.price}
-                          </div>
-                          <div
-                            className={cn(
-                              "text-[10px] font-bold",
-                              stock.isPositive
-                                ? "text-green-600"
-                                : "text-red-500",
-                            )}
-                          >
-                            {stock.change}
-                          </div>
-                        </div>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -143,9 +149,10 @@ export function HeroSection() {
         {/* Scrollable container */}
         <div className="flex overflow-x-auto pb-6 gap-4 px-4 scrollbar-hide snap-x snap-mandatory -mx-4 md:mx-0 justify-start flex-nowrap">
           {HERO_STOCKS.map((stock) => (
-            <div
+            <Link
               key={stock.symbol}
-              className="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-lg hover:border-blue-100 transition-all duration-300 cursor-pointer text-left group min-w-[160px] snap-center flex-shrink-0"
+              href={`/stock/${stock.symbol}`}
+              className="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-lg hover:border-blue-100 transition-all duration-300 cursor-pointer text-left group min-w-[160px] snap-center flex-shrink-0 block"
             >
               <div className="flex justify-between items-start mb-3">
                 <span className="text-[10px] font-bold text-gray-400 tracking-wider group-hover:text-blue-600 transition-colors uppercase truncate">
@@ -169,7 +176,7 @@ export function HeroSection() {
                   ${stock.price}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
