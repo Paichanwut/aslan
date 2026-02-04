@@ -63,11 +63,11 @@ export function HeroSection() {
         </div>
 
         {/* Gradient Fades for Scroll Indication */}
-        <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none hidden md:block"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none hidden md:block"></div>
+        {/* Removed left gradient to prevent hiding the first item */}
+        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none hidden md:block"></div>
 
         {/* Scrollable container */}
-        <div className="flex overflow-x-auto pb-6 gap-4 px-4 scrollbar-hide snap-x snap-mandatory -mx-4 md:mx-0 justify-start md:justify-center flex-nowrap">
+        <div className="flex overflow-x-auto pb-6 gap-4 px-4 scrollbar-hide snap-x snap-mandatory -mx-4 md:mx-0 justify-start flex-nowrap">
           {HERO_STOCKS.map((stock) => (
             <div
               key={stock.symbol}
