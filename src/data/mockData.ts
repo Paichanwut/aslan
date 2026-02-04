@@ -139,6 +139,7 @@ export const PAIN_POINTS = [
 // Tools Section Data
 export const TOOLS_DATA = [
   {
+    id: "smart_money",
     type: "card",
     icon: Box,
     iconColor: "text-red-500",
@@ -152,8 +153,10 @@ export const TOOLS_DATA = [
     ],
     linkText: "View smart money moves",
     linkColor: "text-blue-600",
+    href: "/tools?tool=smart_money",
   },
   {
+    id: "ai_agents",
     type: "card",
     icon: Layers,
     iconColor: "text-orange-500",
@@ -167,10 +170,11 @@ export const TOOLS_DATA = [
     ],
     linkText: "Start research",
     linkColor: "text-blue-600",
+    href: "/tools?tool=ai_agents",
   },
   {
+    id: "invest_gpt",
     type: "card",
-    // type: "highlight", // InvestGPT
     icon: Edit,
     iconColor: "text-blue-500",
     iconBg: "bg-blue-50",
@@ -182,9 +186,11 @@ export const TOOLS_DATA = [
       "Instant intelligence—just ask",
     ],
     linkText: "Start chatting",
-      linkColor: "text-blue-600",
+    linkColor: "text-blue-600",
+    href: "/tools?tool=invest_gpt",
   },
   {
+    id: "stock_picker",
     type: "card",
     icon: Scan,
     iconColor: "text-green-500",
@@ -198,6 +204,7 @@ export const TOOLS_DATA = [
     ],
     linkText: "Get today's picks",
     linkColor: "text-blue-600",
+    href: "/tools?tool=stock_picker",
   },
 ];
 

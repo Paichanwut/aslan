@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { TOOLS_DATA } from "@/data/mockData";
 
 export function ToolsSection() {
@@ -50,12 +51,12 @@ export function ToolsSection() {
                     ))}
                   </ul>
                   <div className="mt-auto">
-                    <a
-                      href="#"
+                    <Link
+                      href={tool.href || "#"}
                       className="flex items-center gap-1 font-bold text-blue-600 hover:text-blue-700 text-sm"
                     >
                       {tool.linkText} <span className="text-base">→</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               );
@@ -72,6 +73,7 @@ export function ToolsSection() {
                 features={tool.features}
                 linkText={tool.linkText}
                 linkColor={tool.linkColor}
+                href={tool.href}
               />
             );
           })}
@@ -90,6 +92,7 @@ function ToolCard({
   features,
   linkText,
   linkColor,
+  href,
 }: any) {
   return (
     <div className="bg-white rounded-2xl p-6 border border-transparent hover:border-blue-100 hover:shadow-xl transition-all duration-300 flex flex-col group h-full">
@@ -111,12 +114,12 @@ function ToolCard({
         ))}
       </ul>
       <div className="mt-auto">
-        <a
-          href="#"
+        <Link
+          href={href || "#"}
           className={`flex items-center gap-1 font-bold hover:opacity-80 transition-opacity ${linkColor} text-sm`}
         >
           {linkText} <span className="text-base">→</span>
-        </a>
+        </Link>
       </div>
     </div>
   );
