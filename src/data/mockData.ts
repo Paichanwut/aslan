@@ -12,6 +12,7 @@ import {
   Edit,
   Scan,
   BarChart2,
+  Star,
   Globe,
   DollarSign,
   Activity,
@@ -25,6 +26,13 @@ import {
   BookOpen,
   BarChart3,
   Check,
+  Home,
+  Target,
+  Radio,
+  LayoutGrid,
+  MessageSquare,
+  User,
+  Lightbulb,
 } from "lucide-react";
 
 // Hero Section Data
@@ -585,4 +593,35 @@ export const CTA_FEATURES = [
   "Portfolio optimization",
   "Automated trade alerts",
   "Sentiment analysis",
+];
+
+// Sidebar / Navigation Data
+export const SIDEBAR_DATA = [
+  {
+    group: "Dashboards",
+    items: [
+      { icon: Home, label: "Home", href: "/" },
+      { icon: Lightbulb, label: "Discover", href: "#" },
+      { icon: FileText, label: "Research", href: "#" },
+    ],
+  },
+  {
+    group: "Apps",
+    items: [
+      { icon: Star, label: "Watchlist", href: "#" },
+      { icon: Globe, label: "Market Movers", href: "#" },
+      { icon: Target, label: "AI Stock Picker", href: "#" },
+      { icon: Radio, label: "Simulate Signals", href: "#" },
+      { icon: DollarSign, label: "Smart Money", href: "#" },
+      { icon: LayoutGrid, label: "Portfolio", href: "#" },
+    ],
+  },
+  {
+    group: "User",
+    items: [
+      { icon: User, label: "My Profile", href: "#" },
+      { icon: MessageSquare, label: "Chat History", href: "#" },
+      { icon: BarChart2, label: "Research History", href: "#" },
+    ],
+  },
 ];

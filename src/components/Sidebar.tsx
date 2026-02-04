@@ -21,6 +21,7 @@ import {
   FileText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SIDEBAR_DATA } from "@/data/mockData";
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -84,105 +85,28 @@ export function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
       )}
 
       <div className="flex-1 overflow-y-auto overflow-x-hidden py-6 custom-scrollbar flex flex-col gap-6">
-        {/* Group 1: Dashboards */}
-        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-6")}>
-          {!isCollapsed && (
-            <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-3">
-              Dashboards
-            </div>
-          )}
-          <NavButton
-            icon={Home}
-            label="Home"
-            href="/"
-            isActive
-            isCollapsed={isCollapsed}
-          />
-          <NavButton
-            icon={Lightbulb}
-            label="Discover"
-            href="#"
-            isCollapsed={isCollapsed}
-          />
-          <NavButton
-            icon={FileText}
-            label="Research"
-            href="#"
-            isCollapsed={isCollapsed}
-          />
-        </div>
-
-        {/* Group 2: Tools */}
-        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-6")}>
-          {!isCollapsed && (
-            <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-3">
-              Apps
-            </div>
-          )}
-          <NavButton
-            icon={Star}
-            label="Watchlist"
-            href="#"
-            isCollapsed={isCollapsed}
-          />
-          <NavButton
-            icon={Globe}
-            label="Market Movers"
-            href="#"
-            isCollapsed={isCollapsed}
-          />
-          <NavButton
-            icon={Target}
-            label="AI Stock Picker"
-            href="#"
-            isCollapsed={isCollapsed}
-          />
-          <NavButton
-            icon={Radio}
-            label="Simulate Signals"
-            href="#"
-            isCollapsed={isCollapsed}
-          />
-          <NavButton
-            icon={DollarSign}
-            label="Smart Money"
-            href="#"
-            isCollapsed={isCollapsed}
-          />
-          <NavButton
-            icon={LayoutGrid}
-            label="Portfolio"
-            href="#"
-            isCollapsed={isCollapsed}
-          />
-        </div>
-
-        {/* Group 3: History */}
-        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-6")}>
-          {!isCollapsed && (
-            <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-3">
-              User
-            </div>
-          )}
-          <NavButton
-            icon={User}
-            label="My Profile"
-            href="#"
-            isCollapsed={isCollapsed}
-          />
-          <NavButton
-            icon={MessageSquare}
-            label="Chat History"
-            href="#"
-            isCollapsed={isCollapsed}
-          />
-          <NavButton
-            icon={BarChart2}
-            label="Research History"
-            href="#"
-            isCollapsed={isCollapsed}
-          />
-        </div>
+        {SIDEBAR_DATA.map((group, groupIndex) => (
+          <div
+            key={groupIndex}
+            className={cn("space-y-1", isCollapsed ? "px-2" : "px-6")}
+          >
+            {!isCollapsed && (
+              <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-3">
+                {group.group}
+              </div>
+            )}
+            {group.items.map((item, itemIndex) => (
+              <NavButton
+                key={itemIndex}
+                icon={item.icon}
+                label={item.label}
+                href={item.href}
+                isActive={item.label === "Home"} // Simple active check for demo
+                isCollapsed={isCollapsed}
+              />
+            ))}
+          </div>
+        ))}
       </div>
 
       {/* Footer */}
