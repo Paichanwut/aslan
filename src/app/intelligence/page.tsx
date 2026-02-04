@@ -22,9 +22,13 @@ import {
   BarChart,
   TrendingDown,
   LucideIcon,
+  Grid,
+  Heart,
+  Clock,
 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import { PAIN_POINTS } from "@/data/mockData";
 
 // define interface for content
 interface FeatureItem {
@@ -180,9 +184,17 @@ const DEFAULT_FEATURES: FeatureItem[] = [
 function IntelligenceContent() {
   const searchParams = useSearchParams();
   const topic = searchParams.get("topic");
+
+  // Find matching pain point data for visual consistency (icon, colors)
+  const painPointData = topic ? PAIN_POINTS.find((p) => p.id === topic) : null;
   const content = topic && TOPIC_CONTENT[topic] ? TOPIC_CONTENT[topic] : null;
 
   const features = content ? content.features : DEFAULT_FEATURES;
+
+  // Use dynamic icon/color if available, otherwise default
+  const HeaderIcon = painPointData ? painPointData.icon : Brain;
+  const iconColor = painPointData ? painPointData.color : "text-blue-600";
+  const iconBg = painPointData ? painPointData.bg : "bg-blue-50";
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
@@ -201,8 +213,10 @@ function IntelligenceContent() {
 
       <main className="max-w-5xl mx-auto px-4 py-16">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center p-3 bg-blue-50 rounded-2xl mb-6">
-            <Brain className="w-12 h-12 text-blue-600" />
+          <div
+            className={`inline-flex items-center justify-center p-3 rounded-2xl mb-6 ${iconBg}`}
+          >
+            <HeaderIcon className={`w-12 h-12 ${iconColor}`} />
           </div>
 
           {content ? (

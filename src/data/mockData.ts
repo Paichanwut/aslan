@@ -90,6 +90,7 @@ export const HERO_STOCKS = [
 // Pain Points Data
 export const PAIN_POINTS = [
   {
+    id: "data_overload",
     icon: Grid,
     color: "text-blue-600",
     bg: "bg-blue-50",
@@ -98,6 +99,7 @@ export const PAIN_POINTS = [
     href: "/intelligence?topic=data_overload",
   },
   {
+    id: "fomo_panic",
     icon: Heart,
     color: "text-red-500",
     bg: "bg-red-50",
@@ -106,6 +108,7 @@ export const PAIN_POINTS = [
     href: "/intelligence?topic=fomo_panic",
   },
   {
+    id: "late_entry",
     icon: Clock,
     color: "text-amber-500",
     bg: "bg-amber-50",
@@ -114,6 +117,7 @@ export const PAIN_POINTS = [
     href: "/intelligence?topic=late_entry",
   },
   {
+    id: "david_goliath",
     icon: Layers,
     color: "text-purple-600",
     bg: "bg-purple-50",
@@ -122,6 +126,7 @@ export const PAIN_POINTS = [
     href: "/intelligence?topic=david_goliath",
   },
   {
+    id: "hidden_risks",
     icon: Activity,
     color: "text-green-600",
     bg: "bg-green-50",
