@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   Home,
@@ -6,172 +8,236 @@ import {
   Search,
   Star,
   Globe,
-  Cpu,
-  Zap,
+  Target,
+  Radio,
   DollarSign,
-  Briefcase,
-  History,
+  LayoutGrid,
   MessageSquare,
   BarChart2,
   ChevronLeft,
-  Hexagon,
+  PanelLeft,
+  User,
+  Lightbulb,
+  FileText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const NAV_ITEMS = [
-  { icon: Home, label: "Home", href: "/", isActive: true },
-  { icon: Compass, label: "Discover", href: "#" },
-  { icon: Clock, label: "Research", href: "#" }, // Using Clock or Search for Research? Image has a Clock/Paper icon. Let's use Clock or FileText. Actually the image has a clock-like icon for "Research"? No, looks like a document/search. Let's stick to Search or similar. Wait, look at the image: "Research" has a magnifying glass/document icon? No, looks like a clock or timer? Ah, "Research" icon looks like a document with a magnifying glass maybe? Or a report. History has a clock.
-  // Let's re-examine image 2.
-  // Home: House icon.
-  // Discover: Lightbulb icon.
-  // Research: Document with a clock or eye? It looks like a report. Let's use FileText or Search.
-  // Watchlist: Star.
-  // Market Movers: Globe.
-  // AI Stock Picker: Target/Selection icon?
-  // Smart Signals: Signal waves.
-  // Smart Money: Dollar sign coin.
-  // Portfolio Toolbox: Layout/Grid icon.
-  // History: Clock.
-  // Chat History: Bubble.
-  // Research History: Bar chart.
-];
+interface SidebarProps {
+  isCollapsed: boolean;
+  toggleCollapse: () => void;
+}
 
-// Let's correct the icons based on closer inspection if possible, or use closest matches.
-// Discover: Lightbulb
-// Research: Scroll/File?
-import { Lightbulb, FileText, Target, Radio, LayoutGrid } from "lucide-react";
-
-export function Sidebar() {
+export function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
   return (
-    <div className="w-64 h-screen border-r bg-white flex flex-col fixed left-0 top-0">
+    <div
+      className={cn(
+        "h-screen border-r bg-white flex flex-col fixed left-0 top-0 transition-[width] duration-300 ease-in-out z-20",
+        isCollapsed ? "w-20" : "w-64",
+      )}
+    >
       {/* Header */}
-      <div className="p-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center transform rotate-45">
-            <div className="w-4 h-4 bg-white transform -rotate-45" />
-          </div>
-          <span className="text-2xl font-bold text-blue-700 tracking-tight">
-            aslan
-          </span>
-        </Link>
-        <button className="p-1 hover:bg-gray-100 rounded-full transition-colors">
-          <ChevronLeft className="w-5 h-5 text-gray-500" />
-        </button>
+      <div
+        className={cn(
+          "flex items-center",
+          isCollapsed ? "justify-center p-4 border-b" : "justify-between p-4",
+        )}
+      >
+        {isCollapsed ? (
+          <button
+            onClick={toggleCollapse}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-700"
+          >
+            <PanelLeft className="w-6 h-6" />
+          </button>
+        ) : (
+          <>
+            <Link href="/" className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center transform rotate-45">
+                <div className="w-4 h-4 bg-white transform -rotate-45" />
+              </div>
+              <span className="text-2xl font-bold text-blue-700 tracking-tight">
+                slan
+              </span>
+            </Link>
+            <button
+              onClick={toggleCollapse}
+              className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5 text-gray-500" />
+            </button>
+          </>
+        )}
       </div>
 
-      <div className="flex-1 overflow-y-auto overflow-x-hidden py-2 custom-scrollbar">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden py-2 custom-scrollbar flex flex-col gap-1">
         {/* Main Nav */}
-        <div className="space-y-1 px-3">
-          <Link
+        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-3")}>
+          <NavButton
+            icon={Home}
+            label="Home"
             href="/"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-gray-100/80 text-gray-900"
-          >
-            <Home className="w-5 h-5" />
-            Home
-          </Link>
-          <Link
+            isActive
+            isCollapsed={isCollapsed}
+          />
+          <NavButton
+            icon={Lightbulb}
+            label="Discover"
             href="#"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <Lightbulb className="w-5 h-5" />
-            Discover
-          </Link>
-          <Link
+            isCollapsed={isCollapsed}
+          />
+          <NavButton
+            icon={FileText}
+            label="Research"
             href="#"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <FileText className="w-5 h-5" />
-            Research
-          </Link>
+            isCollapsed={isCollapsed}
+          />
         </div>
 
-        <div className="my-4 border-t border-gray-100" />
+        <div
+          className={cn(
+            "border-t border-gray-100",
+            isCollapsed ? "my-2" : "my-4",
+          )}
+        />
 
         {/* Tools */}
-        <div className="space-y-1 px-3">
-          <Link
+        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-3")}>
+          <NavButton
+            icon={Star}
+            label="Watchlist"
             href="#"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <Star className="w-5 h-5" />
-            Watchlist
-          </Link>
-          <Link
+            isCollapsed={isCollapsed}
+          />
+          <NavButton
+            icon={Globe}
+            label="Market Movers"
             href="#"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <Globe className="w-5 h-5" />
-            Market Movers
-          </Link>
-          <Link
+            isCollapsed={isCollapsed}
+          />
+          <NavButton
+            icon={Target}
+            label="AI Stock Picker"
             href="#"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <Target className="w-5 h-5" />
-            AI Stock Picker
-          </Link>
-          <Link
+            isCollapsed={isCollapsed}
+          />
+          <NavButton
+            icon={Radio}
+            label="Smart Signals"
             href="#"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <Radio className="w-5 h-5" />
-            Smart Signals
-          </Link>
-          <Link
+            isCollapsed={isCollapsed}
+          />
+          <NavButton
+            icon={DollarSign}
+            label="Smart Money"
             href="#"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <DollarSign className="w-5 h-5" />
-            Smart Money
-          </Link>
+            isCollapsed={isCollapsed}
+          />
         </div>
 
-        <div className="my-4 border-t border-gray-100" />
+        <div
+          className={cn(
+            "border-t border-gray-100",
+            isCollapsed ? "my-2" : "my-4",
+          )}
+        />
 
-        <div className="space-y-1 px-3">
-          <Link
+        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-3")}>
+          <NavButton
+            icon={LayoutGrid}
+            label="Portfolio Toolbox"
             href="#"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <LayoutGrid className="w-5 h-5" />
-            Portfolio Toolbox
-          </Link>
+            isCollapsed={isCollapsed}
+          />
         </div>
 
-        <div className="my-4 border-t border-gray-100" />
+        <div
+          className={cn(
+            "border-t border-gray-100",
+            isCollapsed ? "my-2" : "my-4",
+          )}
+        />
 
-        <div className="space-y-1 px-3">
-          <div className="px-3 py-2 flex items-center gap-3 text-gray-900 font-medium text-sm">
-            <Clock className="w-5 h-5" />
-            History
-          </div>
-          <Link
+        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-3")}>
+          {!isCollapsed && (
+            <div className="px-3 py-2 flex items-center gap-3 text-gray-900 font-medium text-sm">
+              <Clock className="w-5 h-5" />
+              History
+            </div>
+          )}
+          {isCollapsed && (
+            <div className="flex justify-center py-2">
+              <Clock className="w-5 h-5 text-gray-500" />
+            </div>
+          )}
+
+          <NavButton
+            icon={MessageSquare}
+            label="Chat History"
             href="#"
-            className="flex items-center gap-3 px-3 py-2 pl-11 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <MessageSquare className="w-5 h-5" />
-            Chat History
-          </Link>
-          <Link
+            isCollapsed={isCollapsed}
+            className={!isCollapsed ? "pl-11" : ""}
+          />
+          <NavButton
+            icon={BarChart2}
+            label="Research History"
             href="#"
-            className="flex items-center gap-3 px-3 py-2 pl-11 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <BarChart2 className="w-5 h-5" />
-            Research History
-          </Link>
+            isCollapsed={isCollapsed}
+            className={!isCollapsed ? "pl-11" : ""}
+          />
         </div>
       </div>
 
       {/* Footer Buttons */}
-      <div className="p-4 border-t bg-white">
-        <button className="w-full bg-blue-700 text-white rounded-lg py-2.5 text-sm font-semibold hover:bg-blue-800 transition-colors shadow-sm mb-3">
-          Sign Up
-        </button>
-        <button className="w-full bg-gray-100 text-gray-900 rounded-lg py-2.5 text-sm font-semibold hover:bg-gray-200 transition-colors">
-          Log in
-        </button>
+      <div className={cn("border-t bg-white", isCollapsed ? "p-2" : "p-4")}>
+        {isCollapsed ? (
+          <button className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-xl flex items-center justify-center transition-colors shadow-sm">
+            <User className="w-6 h-6" />
+          </button>
+        ) : (
+          <>
+            <button className="w-full bg-blue-700 text-white rounded-lg py-2.5 text-sm font-semibold hover:bg-blue-800 transition-colors shadow-sm mb-3">
+              Sign Up
+            </button>
+            <button className="w-full bg-gray-100 text-gray-900 rounded-lg py-2.5 text-sm font-semibold hover:bg-gray-200 transition-colors">
+              Log in
+            </button>
+          </>
+        )}
       </div>
     </div>
+  );
+}
+
+function NavButton({
+  icon: Icon,
+  label,
+  href,
+  isActive,
+  isCollapsed,
+  className,
+}: {
+  icon: any;
+  label: string;
+  href: string;
+  isActive?: boolean;
+  isCollapsed: boolean;
+  className?: string;
+}) {
+  return (
+    <Link
+      href={href}
+      title={isCollapsed ? label : undefined}
+      className={cn(
+        "flex items-center gap-3 rounded-lg transition-colors min-h-[40px]",
+        isCollapsed ? "justify-center px-1 py-2.5" : "px-3 py-2.5",
+        isActive
+          ? "bg-gray-100/80 text-gray-900 font-semibold"
+          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900 font-medium",
+        className,
+      )}
+    >
+      <Icon className="w-5 h-5 flex-shrink-0" />
+      {!isCollapsed && <span className="text-sm truncate">{label}</span>}
+    </Link>
   );
 }
