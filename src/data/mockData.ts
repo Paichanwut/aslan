@@ -213,27 +213,153 @@ export const AGENT_DEMO_QUESTIONS = [
   {
     text: "Should I buy NVDA now?",
     subtext: "Get instant analysis from multiple specialized agents",
-    // active: true,
+    response: {
+      title: "Your AI Agent Team is analyzing NVIDIA...",
+      agents: [
+        {
+          name: "Fundamental Agent",
+          status: "Running deep analysis...",
+          output: "P/E ratio 65x vs sector avg 28x - Premium justified by 87% YoY growth",
+          color: "text-purple-400",
+          bg: "bg-purple-900/50",
+        },
+        {
+          name: "Technical Agent",
+          status: "Scanning price action...",
+          output: "RSI 72 (overbought), resistance at $950, support at $890",
+          color: "text-blue-400",
+          bg: "bg-blue-900/50",
+        },
+        {
+          name: "Risk Agent",
+          status: "Analyzing volatility...",
+          output: "Implied volatility elevated, consider 3-5% position max",
+          color: "text-pink-400",
+          bg: "bg-pink-900/50",
+        },
+      ],
+      consensus: "Wait for pullback to $890-910. Set alerts.",
+    },
   },
   {
     text: "What stocks should I buy today?",
     subtext: "Your agents scan 11,000+ stocks in real-time",
+    response: {
+      title: "Scanning 11,000+ assets for high-probability setups...",
+      agents: [
+        {
+          name: "Trend Scanner",
+          status: "Filtering market...",
+          output: "Identified 3 stocks breaking out on 3x average volume",
+          color: "text-green-400",
+          bg: "bg-green-900/50",
+        },
+        {
+          name: "Macro Agent",
+          status: "Checking conditions...",
+          output: "Sector rotation into Industrials and Tech detected",
+          color: "text-orange-400",
+          bg: "bg-orange-900/50",
+        },
+      ],
+      consensus: "Top Picks: AMD (Breakout), PLTR (Volume), UBER (Trend).",
+    },
   },
   {
     text: "Any day trading opportunities?",
     subtext: "Live setups refreshed every 30 seconds",
+    response: {
+      title: "Hunting for intraday volatility...",
+      agents: [
+        {
+          name: "Momentum Bot",
+          status: "Tracking velocity...",
+          output: "$TSLA surging +2% in last 15 mins, crossing VWAP",
+          color: "text-red-400",
+          bg: "bg-red-900/50",
+        },
+        {
+          name: "Scalp Agent",
+          status: "Calculating targets...",
+          output: "Potential long above $182.50, Target $184.00",
+          color: "text-yellow-400",
+          bg: "bg-yellow-900/50",
+        },
+      ],
+      consensus: "Watch TSLA for VWAP bounce. Quick scalp long.",
+    },
   },
   {
     text: "Are there any negative news on Apple?",
     subtext: "Real-time news sentiment and impact analysis",
+    response: {
+      title: "Scanning 50,000+ news sources for $AAPL...",
+      agents: [
+        {
+          name: "News Sentiment",
+          status: "Analyzing headlines...",
+          output: "Dominantly Neutral. Concerns on China sales offset by Services growth.",
+          color: "text-teal-400",
+          bg: "bg-teal-900/50",
+        },
+        {
+          name: "Social Arb",
+          status: "Reading sentiment...",
+          output: "Retail sentiment is cautiously optimistic (62% Bullish)",
+          color: "text-indigo-400",
+          bg: "bg-indigo-900/50",
+        },
+      ],
+      consensus: "No major negative catalysts. Buy the dip if > $180.",
+    },
   },
   {
     text: "Analyze Tesla's earnings report",
     subtext: "Compare guidance vs analyst expectations",
+    response: {
+      title: "Digging into Tesla's Q4 Earnings...",
+      agents: [
+        {
+          name: "Earnings Bot",
+          status: "Parsing 10-K...",
+          output: "EPS Beat by $0.05. Gross Margin contracted to 17.6%",
+          color: "text-cyan-400",
+          bg: "bg-cyan-900/50",
+        },
+        {
+          name: "Analyst Check",
+          status: "Comparing estimates...",
+          output: "Guidance for 2026 delivery growth flat. Market reacting negatively.",
+          color: "text-gray-400",
+          bg: "bg-gray-800",
+        },
+      ],
+      consensus: "Mixed report. Margins concerning. Wait for price stabilization.",
+    },
   },
   {
     text: "Is Bitcoin bullish or bearish?",
     subtext: "Multi-timeframe technical breakdown",
+    response: {
+      title: "Analyzing Crypto Market Structure...",
+      agents: [
+        {
+          name: "Chart Pattern",
+          status: "Identifying setup...",
+          output: "Bull Flag forming on 4H chart. Key support at $62k held.",
+          color: "text-orange-400",
+          bg: "bg-orange-900/50",
+        },
+        {
+          name: "On-Chain Agent",
+          status: "Tracking whales...",
+          output: "Exchange outflows spike. Accumulation phase detected.",
+          color: "text-blue-400",
+          bg: "bg-blue-900/50",
+        },
+      ],
+      consensus: "Bullish above $64k. Target $68k this week.",
+    },
   },
 ];
 
