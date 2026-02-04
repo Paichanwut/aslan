@@ -5,7 +5,6 @@ import {
   Home,
   Compass,
   Clock,
-  Search,
   Star,
   Globe,
   Target,
@@ -15,6 +14,7 @@ import {
   MessageSquare,
   BarChart2,
   ChevronLeft,
+  ChevronRight,
   PanelLeft,
   User,
   Lightbulb,
@@ -38,40 +38,58 @@ export function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
       {/* Header */}
       <div
         className={cn(
-          "flex items-center",
-          isCollapsed ? "justify-center p-4 border-b" : "justify-between p-4",
+          "flex items-center h-16",
+          isCollapsed ? "justify-center px-2" : "justify-between px-6",
         )}
       >
         {isCollapsed ? (
+          <div className="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center">
+            <span className="text-white font-bold text-lg">A</span>
+          </div>
+        ) : (
+          <Link href="/" className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">A</span>
+            </div>
+            <span className="text-xl font-bold text-slate-800 tracking-tight">
+              SLAN
+            </span>
+          </Link>
+        )}
+
+        {!isCollapsed && (
           <button
             onClick={toggleCollapse}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-700"
+            className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-400 hover:text-gray-600 transition-colors"
           >
-            <PanelLeft className="w-6 h-6" />
+            <div className="flex">
+              <span className="border-l border-current h-3 mx-[1px]"></span>
+              <ChevronLeft className="w-4 h-4" />
+            </div>
           </button>
-        ) : (
-          <>
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center transform rotate-45">
-                <div className="w-4 h-4 bg-white transform -rotate-45" />
-              </div>
-              <span className="text-2xl font-bold text-blue-700 tracking-tight">
-                slan
-              </span>
-            </Link>
-            <button
-              onClick={toggleCollapse}
-              className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-            >
-              <ChevronLeft className="w-5 h-5 text-gray-500" />
-            </button>
-          </>
         )}
       </div>
 
-      <div className="flex-1 overflow-y-auto overflow-x-hidden py-2 custom-scrollbar flex flex-col gap-1">
-        {/* Main Nav */}
-        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-3")}>
+      {/* Collapse Toggle (Mobile/Collapsed View) */}
+      {isCollapsed && (
+        <div className="flex justify-center py-4 border-b border-dashed border-gray-200 mx-4">
+          <button
+            onClick={toggleCollapse}
+            className="p-2 rounded-lg hover:bg-gray-50 text-gray-500"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      )}
+
+      <div className="flex-1 overflow-y-auto overflow-x-hidden py-6 custom-scrollbar flex flex-col gap-6">
+        {/* Group 1: Dashboards */}
+        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-6")}>
+          {!isCollapsed && (
+            <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-3">
+              Dashboards
+            </div>
+          )}
           <NavButton
             icon={Home}
             label="Home"
@@ -93,15 +111,13 @@ export function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
           />
         </div>
 
-        <div
-          className={cn(
-            "border-t border-gray-100",
-            isCollapsed ? "my-2" : "my-4",
+        {/* Group 2: Tools */}
+        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-6")}>
+          {!isCollapsed && (
+            <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-3">
+              Apps
+            </div>
           )}
-        />
-
-        {/* Tools */}
-        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-3")}>
           <NavButton
             icon={Star}
             label="Watchlist"
@@ -122,7 +138,7 @@ export function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
           />
           <NavButton
             icon={Radio}
-            label="Smart Signals"
+            label="Simulate Signals"
             href="#"
             isCollapsed={isCollapsed}
           />
@@ -132,77 +148,65 @@ export function Sidebar({ isCollapsed, toggleCollapse }: SidebarProps) {
             href="#"
             isCollapsed={isCollapsed}
           />
-        </div>
-
-        <div
-          className={cn(
-            "border-t border-gray-100",
-            isCollapsed ? "my-2" : "my-4",
-          )}
-        />
-
-        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-3")}>
           <NavButton
             icon={LayoutGrid}
-            label="Portfolio Toolbox"
+            label="Portfolio"
             href="#"
             isCollapsed={isCollapsed}
           />
         </div>
 
-        <div
-          className={cn(
-            "border-t border-gray-100",
-            isCollapsed ? "my-2" : "my-4",
-          )}
-        />
-
-        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-3")}>
+        {/* Group 3: History */}
+        <div className={cn("space-y-1", isCollapsed ? "px-2" : "px-6")}>
           {!isCollapsed && (
-            <div className="px-3 py-2 flex items-center gap-3 text-gray-900 font-medium text-sm">
-              <Clock className="w-5 h-5" />
-              History
+            <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-3">
+              User
             </div>
           )}
-          {isCollapsed && (
-            <div className="flex justify-center py-2">
-              <Clock className="w-5 h-5 text-gray-500" />
-            </div>
-          )}
-
+          <NavButton
+            icon={User}
+            label="My Profile"
+            href="#"
+            isCollapsed={isCollapsed}
+          />
           <NavButton
             icon={MessageSquare}
             label="Chat History"
             href="#"
             isCollapsed={isCollapsed}
-            className={!isCollapsed ? "pl-11" : ""}
           />
           <NavButton
             icon={BarChart2}
             label="Research History"
             href="#"
             isCollapsed={isCollapsed}
-            className={!isCollapsed ? "pl-11" : ""}
           />
         </div>
       </div>
 
-      {/* Footer Buttons */}
-      <div className={cn("border-t bg-white", isCollapsed ? "p-2" : "p-4")}>
-        {isCollapsed ? (
-          <button className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-xl flex items-center justify-center transition-colors shadow-sm">
-            <User className="w-6 h-6" />
-          </button>
-        ) : (
-          <>
-            <button className="w-full bg-blue-700 text-white rounded-lg py-2.5 text-sm font-semibold hover:bg-blue-800 transition-colors shadow-sm mb-3">
-              Sign Up
-            </button>
-            <button className="w-full bg-gray-100 text-gray-900 rounded-lg py-2.5 text-sm font-semibold hover:bg-gray-200 transition-colors">
-              Log in
-            </button>
-          </>
+      {/* Footer */}
+      <div
+        className={cn(
+          "border-t border-dashed border-gray-200",
+          isCollapsed ? "p-2" : "p-6",
         )}
+      >
+        {/* Using a sleek icon driven footer for collapsed, full details for expanded if needed */}
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 font-bold shrink-0">
+            N
+          </div>
+          {!isCollapsed && (
+            <div className="overflow-hidden">
+              <div className="text-sm font-bold text-gray-800 truncate">
+                Nick Thomas
+              </div>
+              <div className="text-xs text-gray-500 truncate">
+                nick@kavout.com
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -228,16 +232,33 @@ function NavButton({
       href={href}
       title={isCollapsed ? label : undefined}
       className={cn(
-        "flex items-center gap-3 rounded-lg transition-colors min-h-[40px]",
-        isCollapsed ? "justify-center px-1 py-2.5" : "px-3 py-2.5",
+        "flex items-center gap-3 rounded-lg transition-all group",
+        isCollapsed ? "justify-center w-10 h-10 mx-auto" : "px-3 py-2.5",
         isActive
-          ? "bg-gray-100/80 text-gray-900 font-semibold"
-          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900 font-medium",
+          ? "bg-blue-50 text-blue-700"
+          : "text-gray-500 hover:text-blue-700 hover:bg-gray-50",
         className,
       )}
     >
-      <Icon className="w-5 h-5 flex-shrink-0" />
-      {!isCollapsed && <span className="text-sm truncate">{label}</span>}
+      <div
+        className={cn(
+          "flex items-center justify-center transition-colors",
+          isActive
+            ? "text-blue-700"
+            : "text-gray-400 group-hover:text-blue-700",
+        )}
+      >
+        <Icon className="w-5 h-5 flex-shrink-0" strokeWidth={2} />
+      </div>
+
+      {!isCollapsed && (
+        <span className="text-sm font-medium truncate flex-1">{label}</span>
+      )}
+
+      {/* Active Dot for Expanded state */}
+      {!isCollapsed && isActive && (
+        <span className="w-1.5 h-1.5 rounded-full bg-blue-700"></span>
+      )}
     </Link>
   );
 }
