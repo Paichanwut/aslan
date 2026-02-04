@@ -2,8 +2,51 @@
 
 import Link from "next/link";
 import { ArrowLeft, Brain, Cpu, Database, Globe } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function IntelligencePage() {
+// Content map for dynamic topics
+const TOPIC_CONTENT: Record<
+  string,
+  { title: string; subtitle: string; description: string }
+> = {
+  data_overload: {
+    title: "Cut Through the Noise",
+    subtitle: "Solves: Drowning in Data",
+    description:
+      "Our AI filters out 99% of the noise, delivering only the high-signal intelligence that matters to your portfolio.",
+  },
+  fomo_panic: {
+    title: "Trade with Logic, Not Emotion",
+    subtitle: "Solves: FOMO & Panic Selling",
+    description:
+      "Eliminate emotional biases. Our agents provide objective, data-backed rationale for every potential trade.",
+  },
+  late_entry: {
+    title: "Catch Trends Early",
+    subtitle: "Solves: Always Late to the Party",
+    description:
+      "Identify breakouts before they hit the mainstream news. Our real-time monitoring puts you ahead of the curve.",
+  },
+  david_goliath: {
+    title: "Institutional Power for You",
+    subtitle: "Solves: David vs. Goliath",
+    description:
+      "Level the playing field. Access the same caliber of alternative data and processing power as top hedge funds.",
+  },
+  hidden_risks: {
+    title: "See What Others Miss",
+    subtitle: "Solves: Hidden Risks",
+    description:
+      "Scan for red flags in earnings reports, insider selling, and macro data that traditional screens overlook.",
+  },
+};
+
+function IntelligenceContent() {
+  const searchParams = useSearchParams();
+  const topic = searchParams.get("topic");
+  const content = topic && TOPIC_CONTENT[topic] ? TOPIC_CONTENT[topic] : null;
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
       {/* Navigation Bar */}
@@ -21,18 +64,35 @@ export default function IntelligencePage() {
 
       <main className="max-w-5xl mx-auto px-4 py-16">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center p-3 bg-blue-50rounded-2xl mb-6">
+          <div className="inline-flex items-center justify-center p-3 bg-blue-50 rounded-2xl mb-6">
             <Brain className="w-12 h-12 text-blue-600" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight">
-            Unlock Your{" "}
-            <span className="text-blue-600">Market Intelligence</span>
-          </h1>
-          <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
-            Stop trading in the dark. Our AI agents process millions of data
-            points 24/7 to give you the edge that was previously only available
-            to institutional giants.
-          </p>
+
+          {content ? (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <span className="text-blue-600 font-bold tracking-wide uppercase text-sm mb-2 block">
+                {content.subtitle}
+              </span>
+              <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight">
+                {content.title}
+              </h1>
+              <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
+                {content.description}
+              </p>
+            </div>
+          ) : (
+            <>
+              <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight">
+                Unlock Your{" "}
+                <span className="text-blue-600">Market Intelligence</span>
+              </h1>
+              <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
+                Stop trading in the dark. Our AI agents process millions of data
+                points 24/7 to give you the edge that was previously only
+                available to institutional giants.
+              </p>
+            </>
+          )}
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-16">
@@ -84,5 +144,13 @@ export default function IntelligencePage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function IntelligencePage() {
+  return (
+    <Suspense>
+      <IntelligenceContent />
+    </Suspense>
   );
 }

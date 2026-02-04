@@ -95,6 +95,7 @@ export const PAIN_POINTS = [
     bg: "bg-blue-50",
     title: "Drowning in Data",
     desc: "Charts, signals, news, filings—weeks of analysis with conflicting views. Result? Paralyzed by data overload.",
+    href: "/intelligence?topic=data_overload",
   },
   {
     icon: Heart,
@@ -102,6 +103,7 @@ export const PAIN_POINTS = [
     bg: "bg-red-50",
     title: "FOMO & Panic Selling",
     desc: "Bought high? Sold low? You're not alone. Emotions drive 80% of retail losses. You need an objective voice.",
+    href: "/intelligence?topic=fomo_panic",
   },
   {
     icon: Clock,
@@ -109,6 +111,7 @@ export const PAIN_POINTS = [
     bg: "bg-amber-50",
     title: "Always Late to the Party",
     desc: "See that spike? It already happened. While you sleep, algorithms trade. While you work, opportunities pass.",
+    href: "/intelligence?topic=late_entry",
   },
   {
     icon: Layers,
@@ -116,6 +119,7 @@ export const PAIN_POINTS = [
     bg: "bg-purple-50",
     title: "David vs. Goliath",
     desc: "Hedge funds have AI, Bloomberg terminals, and teams of analysts. What do you have?",
+    href: "/intelligence?topic=david_goliath",
   },
   {
     icon: Activity,
@@ -123,6 +127,7 @@ export const PAIN_POINTS = [
     bg: "bg-green-50",
     title: "Hidden Risks",
     desc: "Market manipulation and hidden risks are everywhere. Without AI, you're investing blind.",
+    href: "/intelligence?topic=hidden_risks",
   },
 ];
 
