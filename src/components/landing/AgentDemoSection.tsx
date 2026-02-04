@@ -20,7 +20,7 @@ export function AgentDemoSection() {
 
         <div className="flex flex-col lg:flex-row gap-6 items-stretch">
           {/* Left: Questions List */}
-          <div className="flex-1 space-y-3">
+          <div className="flex-1 space-y-3 order-2 lg:order-1">
             {AGENT_DEMO_QUESTIONS.map((q, i) => (
               <QuestionCard
                 key={i}
@@ -33,7 +33,7 @@ export function AgentDemoSection() {
           </div>
 
           {/* Right: Terminal / Analysis View */}
-          <div className="flex-1 bg-slate-900 rounded-xl p-5 shadow-2xl border border-slate-700 font-mono text-xs leading-relaxed overflow-hidden relative min-h-[400px]">
+          <div className="flex-1 bg-slate-900 rounded-xl p-4 sm:p-5 shadow-2xl border border-slate-700 font-mono text-xs leading-relaxed overflow-hidden relative min-h-[350px] sm:min-h-[400px] order-1 lg:order-2">
             {/* Window Controls */}
             <div className="flex gap-1.5 mb-4">
               <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div>
@@ -47,7 +47,9 @@ export function AgentDemoSection() {
             >
               <div className="flex items-center gap-2">
                 <span>🤖</span>
-                <span className="text-white font-bold">{response.title}</span>
+                <span className="text-white font-bold text-sm sm:text-base">
+                  {response.title}
+                </span>
               </div>
 
               {response.agents.map((agent: any, index: number) => (
@@ -56,16 +58,22 @@ export function AgentDemoSection() {
                   className="animate-in fade-in slide-in-from-bottom-2 duration-500"
                   style={{
                     animationDelay: `${index * 150}ms`,
-                    fillMode: "backwards",
+                    animationFillMode: "backwards",
                   }}
                 >
-                  <span
-                    className={`${agent.bg} ${agent.color} px-1.5 py-0.5 rounded text-[10px] font-bold mr-2`}
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <span
+                      className={`${agent.bg} ${agent.color} px-1.5 py-0.5 rounded text-[10px] font-bold`}
+                    >
+                      {agent.name}
+                    </span>
+                    <span className="text-[10px] opacity-70">
+                      {agent.status}
+                    </span>
+                  </div>
+                  <div
+                    className={`pl-2 sm:pl-4 mt-1 ${agent.color} border-l-2 border-${agent.color}/20`}
                   >
-                    {agent.name}
-                  </span>
-                  <span>{agent.status}</span>
-                  <div className={`pl-4 mt-1 ${agent.color}`}>
                     → {agent.output}
                   </div>
                 </div>
@@ -74,14 +82,17 @@ export function AgentDemoSection() {
               {/* Consensus */}
               <div
                 className="pt-3 border-t border-slate-700 mt-3 animate-in fade-in slide-in-from-bottom-2 duration-700"
-                style={{ animationDelay: "600ms", fillMode: "backwards" }}
+                style={{
+                  animationDelay: "600ms",
+                  animationFillMode: "backwards",
+                }}
               >
-                <div className="text-yellow-400 font-bold mb-1">
+                <div className="text-yellow-400 font-bold mb-1 text-sm">
                   CONSENSUS: {response.consensus}
                 </div>
                 <div className="flex items-center gap-2 text-slate-500 text-[10px]">
-                  <span>⏱</span> Analysis completed in{" "}
-                  {(Math.random() * 20 + 5).toFixed(0)} seconds
+                  <span>⏱</span> Analysis completed in {12 + (activeIndex % 10)}{" "}
+                  seconds
                 </div>
               </div>
             </div>

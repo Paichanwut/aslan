@@ -17,10 +17,11 @@ export function HeroSection() {
   return (
     <section className="flex flex-col items-center justify-center py-10 px-4 text-center max-w-6xl mx-auto">
       {/* Headlines */}
-      <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
         Enhance your{" "}
         <span className="text-blue-600 relative inline-block">
-          portfolio management
+          portfolio
+          <br className="sm:hidden" /> management
           <svg
             className="absolute w-full h-2 -bottom-1 left-0 text-blue-200 -z-10"
             viewBox="0 0 100 10"
