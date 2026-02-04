@@ -1,3 +1,5 @@
+import { AGENT_DEMO_QUESTIONS } from "@/data/mockData";
+
 export function AgentDemoSection() {
   return (
     <section className="py-12 px-4 bg-slate-50">
@@ -14,23 +16,14 @@ export function AgentDemoSection() {
         <div className="flex flex-col lg:flex-row gap-6 items-stretch">
           {/* Left: Questions List */}
           <div className="flex-1 space-y-3">
-            <QuestionCard
-              active
-              text="Should I buy NVDA now?"
-              subtext="Get instant analysis from multiple specialized agents"
-            />
-            <QuestionCard
-              text="What stocks should I buy today?"
-              subtext="Your agents scan 11,000+ stocks in real-time"
-            />
-            <QuestionCard
-              text="Any day trading opportunities?"
-              subtext="Live setups refreshed every 30 seconds"
-            />
-            <QuestionCard
-              text="Are there any negative news on Apple?"
-              subtext="Real-time news sentiment and impact analysis"
-            />
+            {AGENT_DEMO_QUESTIONS.map((q, i) => (
+              <QuestionCard
+                key={i}
+                active={q.active}
+                text={q.text}
+                subtext={q.subtext}
+              />
+            ))}
           </div>
 
           {/* Right: Terminal / Analysis View */}

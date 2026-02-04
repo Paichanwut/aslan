@@ -1,4 +1,5 @@
 import { Check, ArrowRight } from "lucide-react";
+import { CTA_FEATURES } from "@/data/mockData";
 
 export function CallToActionSection() {
   return (
@@ -21,10 +22,9 @@ export function CallToActionSection() {
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-3xl mx-auto">
-          <FeatureCheck text="Instant intelligence" />
-          <FeatureCheck text="Confident, rational decisions" />
-          <FeatureCheck text="24/7 opportunity detection" />
-          <FeatureCheck text="Institutional-grade insights" />
+          {CTA_FEATURES.map((feature, i) => (
+            <FeatureCheck key={i} text={feature} />
+          ))}
         </div>
 
         <button className="bg-blue-600 hover:bg-blue-700 text-white text-base font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-blue-200 hover:-translate-y-1 transition-all flex items-center gap-2 mx-auto">

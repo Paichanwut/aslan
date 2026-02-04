@@ -1,35 +1,4 @@
-import { Grid, Heart, Clock, Layers } from "lucide-react";
-
-const PAIN_POINTS = [
-  {
-    icon: Grid,
-    color: "text-blue-600",
-    bg: "bg-blue-50",
-    title: "Drowning in Data",
-    desc: "Charts, signals, news, filings—weeks of analysis with conflicting views. Result? Paralyzed by data overload.",
-  },
-  {
-    icon: Heart,
-    color: "text-red-500",
-    bg: "bg-red-50",
-    title: "FOMO & Panic Selling",
-    desc: "Bought high? Sold low? You're not alone. Emotions drive 80% of retail losses. You need an objective voice.",
-  },
-  {
-    icon: Clock,
-    color: "text-amber-500",
-    bg: "bg-amber-50",
-    title: "Always Late to the Party",
-    desc: "See that spike? It already happened. While you sleep, algorithms trade. While you work, opportunities pass.",
-  },
-  {
-    icon: Layers,
-    color: "text-purple-600",
-    bg: "bg-purple-50",
-    title: "David vs. Goliath",
-    desc: "Hedge funds have AI, Bloomberg terminals, and teams of analysts. What do you have?",
-  },
-];
+import { PAIN_POINTS } from "@/data/mockData";
 
 export function PainPointsSection() {
   return (

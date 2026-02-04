@@ -1,5 +1,5 @@
-import { BookOpen, BarChart3, Video } from "lucide-react";
 import { ArrowRight } from "lucide-react";
+import { MARKET_EDUCATION } from "@/data/mockData";
 
 export function MasterMarketsSection() {
   return (
@@ -15,30 +15,17 @@ export function MasterMarketsSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <EducationCard
-            icon={BookOpen}
-            iconColor="text-slate-700"
-            iconBg="bg-blue-100"
-            title="Academy"
-            desc="Learning center featuring tutorials, glossary, help docs, and expert investing tips"
-            linkText="Start Learning"
-          />
-          <EducationCard
-            icon={BarChart3}
-            iconColor="text-slate-700"
-            iconBg="bg-green-100"
-            title="Market Lens"
-            desc="Actionable investment ideas and sector insights across stocks, ETFs, crypto, and forex"
-            linkText="Explore Ideas"
-          />
-          <EducationCard
-            icon={Video}
-            iconColor="text-slate-700"
-            iconBg="bg-yellow-100"
-            title="Video Tutorials"
-            desc="How-to videos for mastering AI tools, features, and smarter investing techniques"
-            linkText="View Tutorials"
-          />
+          {MARKET_EDUCATION.map((item, i) => (
+            <EducationCard
+              key={i}
+              icon={item.icon}
+              iconColor={item.iconColor}
+              iconBg={item.iconBg}
+              title={item.title}
+              desc={item.desc}
+              linkText={item.linkText}
+            />
+          ))}
         </div>
       </div>
     </section>

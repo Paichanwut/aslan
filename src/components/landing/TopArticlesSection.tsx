@@ -1,4 +1,5 @@
-import { ArrowRight, Clock, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
+import { TOP_ARTICLES } from "@/data/mockData";
 
 export function TopArticlesSection() {
   return (
@@ -49,26 +50,14 @@ export function TopArticlesSection() {
 
           {/* Side Articles (Right) */}
           <div className="space-y-4">
-            <ArticleCard
-              title="Travel Industry Outlook 2026: Airlines, Hotels, and Booking Stocks Investment Guide"
-              date="Jan 26, 2026"
-              color="from-green-800 to-emerald-600"
-            />
-            <ArticleCard
-              title="Cathie Wood's Golden Age Thesis: What Investors Need to Know in 2026"
-              date="Jan 20, 2026"
-              color="from-slate-900 to-blue-900"
-            />
-            <ArticleCard
-              title="Walmart Joins Nasdaq-100 in 2026: What Investors Need to Know"
-              date="Jan 16, 2026"
-              color="from-yellow-600 to-orange-500"
-            />
-            <ArticleCard
-              title="Apple and Google AI Partnership 2026: Everything You Need to Know About Gemini-Pro"
-              date="Jan 14, 2026"
-              color="from-gray-800 to-gray-600"
-            />
+            {TOP_ARTICLES.map((article, i) => (
+              <ArticleCard
+                key={i}
+                title={article.title}
+                date={article.date}
+                color={article.color}
+              />
+            ))}
           </div>
         </div>
       </div>

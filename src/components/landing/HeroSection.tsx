@@ -1,49 +1,6 @@
-import {
-  Search,
-  Sparkles,
-  TrendingUp,
-  TrendingDown,
-  ArrowRight,
-} from "lucide-react";
+import { Search, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const STOCK_DATA = [
-  {
-    symbol: "MSFT",
-    name: "STOCK",
-    price: "411.21",
-    change: "-2.96%",
-    isPositive: false,
-  },
-  {
-    symbol: "AMD",
-    name: "STOCK",
-    price: "242.11",
-    change: "-1.72%",
-    isPositive: false,
-  },
-  {
-    symbol: "SPY",
-    name: "ETF",
-    price: "689.44",
-    change: "-0.87%",
-    isPositive: false,
-  },
-  {
-    symbol: "PYPL",
-    name: "STOCK",
-    price: "41.70",
-    change: "-25.49%",
-    isPositive: false,
-  },
-  {
-    symbol: "SMCI",
-    name: "STOCK",
-    price: "29.67",
-    change: "-0.13%",
-    isPositive: false,
-  },
-];
+import { HERO_STOCKS } from "@/data/mockData";
 
 export function HeroSection() {
   return (
@@ -105,14 +62,15 @@ export function HeroSection() {
           <h3 className="text-lg font-bold text-slate-900">Popular today</h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3">
-          {STOCK_DATA.map((stock) => (
+        {/* Scrollable container for expanded stock list */}
+        <div className="flex overflow-x-auto pb-4 gap-3 md:grid md:grid-cols-4 lg:grid-cols-6 lg:gap-3 xl:grid-cols-8 scrollbar-hide snap-x">
+          {HERO_STOCKS.map((stock) => (
             <div
               key={stock.symbol}
-              className="bg-white border border-gray-100 rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer text-left group"
+              className="bg-white border border-gray-100 rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer text-left group min-w-[140px] snap-center"
             >
               <div className="flex justify-between items-start mb-2">
-                <span className="text-[10px] font-bold text-gray-400 tracking-wider group-hover:text-blue-600 transition-colors">
+                <span className="text-[10px] font-bold text-gray-400 tracking-wider group-hover:text-blue-600 transition-colors truncate">
                   {stock.name}
                 </span>
               </div>

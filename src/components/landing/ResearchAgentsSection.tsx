@@ -1,71 +1,5 @@
-import {
-  ArrowRight,
-  BarChart2,
-  Globe,
-  TrendingUp,
-  DollarSign,
-  Activity,
-  FileText,
-} from "lucide-react";
-
-const AGENTS = [
-  {
-    icon: BarChart2,
-    color: "text-red-500",
-    title: "Commodity Strategist",
-    desc: "Smarter analysis. Better commodity decisions.",
-    link: "Spot",
-  },
-  {
-    icon: Globe,
-    color: "text-green-500",
-    title: "Market Outlook",
-    desc: "Live market momentum: track shifts across US, Canada, Europe...",
-    link: "Start",
-  },
-  {
-    icon: TrendingUp,
-    color: "text-orange-500",
-    title: "Swing Trade Analysis",
-    desc: "Spot short- to medium-term swing opportunities.",
-    link: "Start",
-  },
-  {
-    icon: DollarSign,
-    color: "text-blue-500",
-    title: "Buy or Sell",
-    desc: "Provides investment ratings and analysis to help investors evaluate decisions.",
-    link: "Start",
-  },
-  {
-    icon: Activity,
-    color: "text-green-600",
-    title: "Technical Analyst",
-    desc: "Live price trends & technical analysis.",
-    link: "Analyze",
-  },
-  {
-    icon: FileText,
-    color: "text-orange-600",
-    title: "News Sentiment",
-    desc: "Gauges bullish or bearish news sentiment.",
-    link: "Track",
-  },
-  {
-    icon: DollarSign,
-    color: "text-purple-500",
-    title: "Fundamental Analyst",
-    desc: "Evaluates stock value & financial health with latest data.",
-    link: "Evaluate",
-  },
-  {
-    icon: Activity,
-    color: "text-red-500",
-    title: "Trading Signals QuickView",
-    desc: "Check short-term trading signals across multiple timeframes.",
-    link: "Check",
-  },
-];
+import { ArrowRight } from "lucide-react";
+import { RESEARCH_AGENTS } from "@/data/mockData";
 
 export function ResearchAgentsSection() {
   return (
@@ -83,7 +17,7 @@ export function ResearchAgentsSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {AGENTS.map((agent, i) => (
+          {RESEARCH_AGENTS.map((agent, i) => (
             <div
               key={i}
               className="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-lg hover:border-blue-100 transition-all duration-300 group flex flex-col h-full"

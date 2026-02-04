@@ -1,4 +1,4 @@
-import { Box, Layers, Edit, Scan } from "lucide-react";
+import { TOOLS_DATA } from "@/data/mockData";
 
 export function ToolsSection() {
   return (
@@ -18,91 +18,63 @@ export function ToolsSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {/* Card 1: Smart Money */}
-          <ToolCard
-            icon={Box}
-            iconColor="text-red-500"
-            iconBg="bg-red-50"
-            title="Smart Money"
-            desc="Follow what insiders, analysts, Congress, and billionaires are buying before the market reacts."
-            features={[
-              "Cross-validate from multiple sources",
-              "Track 10,000+ insiders & institutions",
-              "Real-time alerts on high-confidence trades",
-            ]}
-            linkText="View smart money moves"
-            linkColor="text-blue-600"
-          />
-
-          {/* Card 2: AI Research Agents */}
-          <ToolCard
-            icon={Layers}
-            iconColor="text-orange-500"
-            iconBg="bg-orange-50"
-            title="AI Research Agents"
-            desc="Your 24/7 team of specialized analysts for stocks, crypto, forex, and ETFs."
-            features={[
-              "7 expert agents working around the clock",
-              "Institutional-grade research instantly",
-              "All research saved in your library",
-            ]}
-            linkText="Start research"
-            linkColor="text-blue-600"
-          />
-
-          {/* Card 3: InvestGPT (Highlighted) */}
-          <div className="bg-white rounded-2xl p-6 shadow-xl border-2 border-blue-500 relative transform hover:-translate-y-1 transition-transform duration-300 flex flex-col">
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4 bg-blue-50">
-              <Edit className="w-5 h-5 text-blue-600" />
-            </div>
-            <h3 className="text-lg font-bold text-blue-600 mb-2">InvestGPT</h3>
-            <p className="text-slate-600 mb-4 leading-relaxed text-sm">
-              Your 24/7 AI analyst that answers any market question instantly.
-            </p>
-            <ul className="space-y-2 mb-4 flex-1">
-              {[
-                "Real-time data analysis",
-                "Technical & fundamental insights",
-                "Instant intelligence—just ask",
-              ].map((item, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-2 text-xs text-slate-700"
+          {TOOLS_DATA.map((tool, idx) => {
+            if (tool.type === "highlight") {
+              return (
+                <div
+                  key={idx}
+                  className="bg-white rounded-2xl p-6 shadow-xl border-2 border-blue-500 relative transform hover:-translate-y-1 transition-transform duration-300 flex flex-col"
                 >
-                  <div className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-green-600 text-[10px] font-bold">
-                      ✓
-                    </span>
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4 bg-blue-50">
+                    <tool.icon className="w-5 h-5 text-blue-600" />
                   </div>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-auto">
-              <a
-                href="#"
-                className="flex items-center gap-1 font-bold text-blue-600 hover:text-blue-700 text-sm"
-              >
-                Start chatting <span className="text-base">→</span>
-              </a>
-            </div>
-          </div>
+                  <h3 className="text-lg font-bold text-blue-600 mb-2">
+                    {tool.title}
+                  </h3>
+                  <p className="text-slate-600 mb-4 leading-relaxed text-sm">
+                    {tool.desc}
+                  </p>
+                  <ul className="space-y-2 mb-4 flex-1">
+                    {tool.features!.map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 text-xs text-slate-700"
+                      >
+                        <div className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <span className="text-green-600 text-[10px] font-bold">
+                            ✓
+                          </span>
+                        </div>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-auto">
+                    <a
+                      href="#"
+                      className="flex items-center gap-1 font-bold text-blue-600 hover:text-blue-700 text-sm"
+                    >
+                      {tool.linkText} <span className="text-base">→</span>
+                    </a>
+                  </div>
+                </div>
+              );
+            }
 
-          {/* Card 4: AI Stock Picker */}
-          <ToolCard
-            icon={Scan}
-            iconColor="text-green-500"
-            iconBg="bg-green-50"
-            title="AI Stock Picker"
-            desc="Discover high-potential stocks daily with AI-driven strategies."
-            features={[
-              "AI analysis of 9,000+ U.S. stocks",
-              "Daily updated stock rankings",
-              "Actionable, data-driven picks",
-            ]}
-            linkText="Get today's picks"
-            linkColor="text-blue-600"
-          />
+            return (
+              <ToolCard
+                key={idx}
+                icon={tool.icon}
+                iconColor={tool.iconColor}
+                iconBg={tool.iconBg}
+                title={tool.title}
+                desc={tool.desc}
+                features={tool.features}
+                linkText={tool.linkText}
+                linkColor={tool.linkColor}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
@@ -118,7 +90,7 @@ function ToolCard({
   features,
   linkText,
   linkColor,
-}) {
+}: any) {
   return (
     <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-xl hover:border-blue-100 transition-all duration-300 flex flex-col group h-full">
       <div
@@ -129,7 +101,7 @@ function ToolCard({
       <h3 className="text-lg font-bold text-slate-900 mb-2">{title}</h3>
       <p className="text-slate-500 mb-4 leading-relaxed text-xs">{desc}</p>
       <ul className="space-y-2 mb-4 flex-1">
-        {features.map((item, i) => (
+        {features.map((item: string, i: number) => (
           <li key={i} className="flex items-start gap-2 text-xs text-slate-600">
             <div className="w-4 h-4 rounded-full bg-green-50 flex items-center justify-center flex-shrink-0 mt-0.5">
               <span className="text-green-500 text-[10px] font-bold">✓</span>
