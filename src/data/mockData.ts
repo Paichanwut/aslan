@@ -159,8 +159,11 @@ export const TOOLS_DATA = [
     linkColor: "text-blue-600",
   },
   {
-    type: "highlight", // InvestGPT
+    type: "card",
+    // type: "highlight", // InvestGPT
     icon: Edit,
+    iconColor: "text-blue-500",
+    iconBg: "bg-blue-50",
     title: "InvestGPT",
     desc: "Your 24/7 AI analyst that answers any market question instantly.",
     features: [
@@ -169,6 +172,7 @@ export const TOOLS_DATA = [
       "Instant intelligence—just ask",
     ],
     linkText: "Start chatting",
+      linkColor: "text-blue-600",
   },
   {
     type: "card",

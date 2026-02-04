@@ -92,7 +92,7 @@ function ToolCard({
   linkColor,
 }: any) {
   return (
-    <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-xl hover:border-blue-100 transition-all duration-300 flex flex-col group h-full">
+    <div className="bg-white rounded-2xl p-6 border border-transparent hover:border-blue-100 hover:shadow-xl transition-all duration-300 flex flex-col group h-full">
       <div
         className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 ${iconBg}`}
       >
