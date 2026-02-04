@@ -44,17 +44,24 @@ export function HeroSection() {
       </p>
 
       {/* Search Bar */}
-      <div className="w-full max-w-2xl relative mb-10">
+      <div className="w-full max-w-2xl relative mb-10 text-left">
         <div className="absolute -top-3 left-6 z-10">
           <span className="bg-white text-[10px] font-bold text-green-600 px-2 py-0.5 rounded-full border shadow-sm flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
             AI-Powered
           </span>
         </div>
-        <div className="relative group">
+        <div className="relative group z-50">
           <input
             type="text"
             placeholder="Ask anything..."
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setShowResults(true);
+            }}
+            onFocus={() => setShowResults(true)}
+            onBlur={() => setTimeout(() => setShowResults(false), 200)}
             className="w-full h-12 pl-12 pr-28 rounded-xl border border-gray-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 text-base transition-all"
           />
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -62,6 +69,63 @@ export function HeroSection() {
           <button className="absolute right-1.5 top-1.5 bottom-1.5 bg-gray-50 hover:bg-white border border-gray-100 hover:border-gray-200 text-slate-800 font-semibold px-4 rounded-lg transition-all flex items-center gap-1 shadow-sm text-sm">
             Ask AI <ArrowRight className="w-3 h-3 ml-1" />
           </button>
+
+          {/* Search Dropdown Results */}
+          {showResults && query.length > 0 && (
+            <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-200">
+              <div className="py-2">
+                <div className="px-4 py-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                  Suggestions
+                </div>
+                {filteredStocks.length > 0 ? (
+                  <ul>
+                    {filteredStocks.map((stock) => (
+                      <li
+                        key={stock.symbol}
+                        className="px-4 py-3 hover:bg-blue-50 cursor-pointer flex justify-between items-center transition-colors border-b border-gray-50 last:border-0"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center font-bold text-xs text-slate-600">
+                            {stock.symbol[0]}
+                          </div>
+                          <div>
+                            <div className="font-bold text-slate-900 text-sm">
+                              {stock.symbol}
+                            </div>
+                            <div className="text-xs text-slate-500">
+                              {stock.name}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="font-bold text-slate-900 text-sm">
+                            ${stock.price}
+                          </div>
+                          <div
+                            className={cn(
+                              "text-[10px] font-bold",
+                              stock.isPositive
+                                ? "text-green-600"
+                                : "text-red-500",
+                            )}
+                          >
+                            {stock.change}
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="p-8 text-center">
+                    <div className="text-slate-400 mb-2">🤔</div>
+                    <p className="text-slate-500 text-sm">
+                      No results found for "{query}"
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
