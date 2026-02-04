@@ -196,7 +196,7 @@ export const AGENT_DEMO_QUESTIONS = [
   {
     text: "Should I buy NVDA now?",
     subtext: "Get instant analysis from multiple specialized agents",
-    active: true,
+    // active: true,
   },
   {
     text: "What stocks should I buy today?",

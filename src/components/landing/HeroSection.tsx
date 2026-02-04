@@ -1,8 +1,18 @@
+import { useState } from "react";
 import { Search, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { HERO_STOCKS } from "@/data/mockData";
 
 export function HeroSection() {
+  const [query, setQuery] = useState("");
+  const [showResults, setShowResults] = useState(false);
+
+  const filteredStocks = HERO_STOCKS.filter(
+    (stock) =>
+      stock.symbol.toLowerCase().includes(query.toLowerCase()) ||
+      stock.name.toLowerCase().includes(query.toLowerCase()),
+  );
+
   return (
     <section className="flex flex-col items-center justify-center py-10 px-4 text-center max-w-6xl mx-auto">
       {/* Headlines */}
